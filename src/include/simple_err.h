@@ -11,6 +11,7 @@ const unsigned long int code##_CDX = val;
 
 // add error information
 _ADD_ERROR_INFORMATION_(SUCCESS, 0, "Success")
+_ADD_ERROR_INFORMATION_(NCURSES_INIT_FAILED, 1, "ncurses initialization failed")
 
 #undef _ADD_ERROR_INFORMATION_
 

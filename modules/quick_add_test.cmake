@@ -4,6 +4,11 @@ function(_add_test TEST DESCRIPTION)
 
     add_executable(${TEST_NAME} "tests/${TEST}_test.cpp")
     target_link_libraries(${TEST_NAME} PUBLIC ${PROJECT_NAME})
+
+    foreach(LIB ${TEST_ESS_LIB})
+        target_link_libraries(${TEST_NAME} PUBLIC ${LIB})
+    endforeach()
+
     target_include_directories(${TEST_NAME} PUBLIC src/include)
 
     add_test(NAME ${TEST_NAME}

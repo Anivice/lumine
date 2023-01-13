@@ -175,6 +175,7 @@ simple_error_t::simple_error_t(uint64_t _error_code, const std::string& extra)
     switch (error_code)
     {
         ERROR_SWITCH_CASE(SUCCESS);
+        ERROR_SWITCH_CASE(NCURSES_INIT_FAILED);
         default :
             output << "(Unknown error)";
             break;

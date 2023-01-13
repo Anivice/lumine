@@ -13,6 +13,8 @@ endif()
 
 enable_testing()
 
+set(TEST_ESS_LIB ncurses pthread)
+
 include(modules/compile_definition.cmake)
 include(modules/quick_add_test.cmake)
 include(modules/add_utils.cmake)
@@ -33,10 +35,16 @@ add_library(${PROJECT_NAME} STATIC
         src/debug/elf_process.cpp
         src/debug/invoke_addr2line.cpp
         src/debug/simple_err.cpp    src/include/simple_err.h
+        src/include/lumine.h
+        src/engine/display.cpp
         )
 target_include_directories(${PROJECT_NAME} PUBLIC src/include)
 target_link_libraries(${PROJECT_NAME}      PUBLIC ${LIBELF_LIBRARIES})
 target_link_libraries(${PROJECT_NAME}      PUBLIC gcov)
+
+foreach(LIB ${TEST_ESS_LIB})
+    target_link_libraries(${PROJECT_NAME} PUBLIC ${LIB})
+endforeach()
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${LIBELF_INCLUDE_DIRS})
 target_compile_options(${PROJECT_NAME}     PUBLIC ${LIBELF_CFLAGS_OTHER})
@@ -45,3 +53,4 @@ add_executable(${PROJECT_NAME}_exe src/main.cpp)
 target_link_libraries(${PROJECT_NAME}_exe PUBLIC ${PROJECT_NAME})
 
 _add_test(ftrace    "function trace system")
+_add_test(ncurses   "ncurses hello world")
