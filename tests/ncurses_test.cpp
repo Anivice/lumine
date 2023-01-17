@@ -8,6 +8,10 @@ int main(int argc, char ** argv)
     initialize_symbol_vector(argv[0]);
 
     screen screen;
+    screen.init();
+
+    // clear screen
+    screen.display();
 
     screen.v_memory[1][0] = ' ';
     screen.v_memory[1][1] = 'H';
@@ -15,6 +19,8 @@ int main(int argc, char ** argv)
     screen.v_memory[1][3] = 'l';
     screen.v_memory[1][4] = 'l';
     screen.v_memory[1][5] = 'o';
+
+    screen.display();
 
     getch();
 
@@ -24,6 +30,8 @@ int main(int argc, char ** argv)
     screen.v_memory[1][3] = 'r';
     screen.v_memory[1][4] = 'l';
     screen.v_memory[1][5] = 'd';
+
+    screen.display();
 
     getch();
 

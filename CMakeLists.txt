@@ -37,6 +37,7 @@ add_library(${PROJECT_NAME} STATIC
         src/debug/simple_err.cpp    src/include/simple_err.h
         src/include/lumine.h
         src/engine/display.cpp
+        src/engine/entity.cpp
         )
 target_include_directories(${PROJECT_NAME} PUBLIC src/include)
 target_link_libraries(${PROJECT_NAME}      PUBLIC ${LIBELF_LIBRARIES})
@@ -54,3 +55,4 @@ target_link_libraries(${PROJECT_NAME}_exe PUBLIC ${PROJECT_NAME})
 
 _add_test(ftrace    "function trace system")
 _add_test(ncurses   "ncurses hello world")
+_add_test(obj       "moving entity test")

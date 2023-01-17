@@ -11,8 +11,9 @@ const unsigned long int code##_CDX = val;
 
 // add error information
 _ADD_ERROR_INFORMATION_(SUCCESS, 0, "Success")
-_ADD_ERROR_INFORMATION_(NCURSES_INIT_FAILED, 1, "ncurses initialization failed")
-
+_ADD_ERROR_INFORMATION_(NCURSES_INIT_FAILED,        1,  "ncurses initialization failed")
+_ADD_ERROR_INFORMATION_(SIGNAL_OVERRIDE_FAILED,     2,  "signal override failed")
+_ADD_ERROR_INFORMATION_(NO_SPACE_LEFT_ON_SCRREN,    3,  "no space left on screen")
 #undef _ADD_ERROR_INFORMATION_
 
 
