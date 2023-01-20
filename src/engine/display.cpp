@@ -23,6 +23,17 @@ void screen::init()
     }
 
     // init memory space
+    for (int line = 0; line < LINE_LEN; line++)
+    {
+        std::vector < std::string > null;
+        std::vector < std::vector < std::string > > empty_line;
+        for (int cols = 0; cols < COLS_LEN; cols++)
+        {
+            empty_line.emplace_back(null);
+        }
+        detailed_memory_view.emplace_back(empty_line);
+    }
+
     clear();
 
     // clear screen
@@ -61,9 +72,17 @@ void screen::clear()
             sig = ' ';
         }
     }
+
+    for (int line = 0; line < LINE_LEN; line++)
+    {
+        for (int cols = 0; cols < COLS_LEN; cols++)
+        {
+            detailed_memory_view[line][cols].clear();
+        }
+    }
 }
 
-void screen::draw(const std::string &raw_figure, location_t starting_location)
+void screen::draw(const std::string & name, const std::string &raw_figure, location_t starting_location)
 {
     std::vector < std::string > figure;
     std::string cache;
@@ -98,10 +117,36 @@ void screen::draw(const std::string &raw_figure, location_t starting_location)
     {
         for (int cols = 0; cols < figure[line].size(); cols++)
         {
-            v_memory
-                [starting_location.line + line]
-                [starting_location.cols + cols]
-                    = figure[line][cols];
+            if (figure[line][cols] != ' ')
+            {
+                detailed_memory_view
+                    [starting_location.line + line]
+                    [starting_location.cols + cols].emplace_back(name);
+
+                v_memory
+                    [starting_location.line + line]
+                    [starting_location.cols + cols]
+                        = figure[line][cols];
+            }
         }
     }
+}
+
+std::list<std::vector<std::string> > screen::export_clash()
+{
+    std::list<std::vector<std::string> > ret;
+
+    for (const auto & line : detailed_memory_view)
+    {
+        for (const auto & cols : line)
+        {
+            if (cols.size() > 1)
+            {
+                ret.emplace_back(cols);
+            }
+        }
+    }
+
+    ret.unique();
+    return ret;
 }

@@ -89,10 +89,10 @@ void entity_manager::update_screen()
     {
         for (const auto& loc : entity_list.second.figure_starting_locations)
         {
-            display.draw(entity_list.second.figure, loc.second);
+            display.draw(entity_list.first,
+                    entity_list.second.figure, loc.second);
         }
     }
 
     display.update_screen();
 }
-

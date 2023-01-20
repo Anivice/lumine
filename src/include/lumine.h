@@ -8,6 +8,7 @@
 #include <vector>
 #include <map>
 #include <string>
+#include <list>
 
 #define COLS_LEN 110
 #define LINE_LEN 28
@@ -29,6 +30,10 @@ public:
     /** video memory */
     char v_memory [LINE_LEN] [COLS_LEN + 1] { };
 
+    std::vector < std::vector <
+            std::vector < std::string /* name */ > /* records */
+            > > detailed_memory_view;
+
     /** display contents on screen according to v_memory */
     void update_screen();
 
@@ -42,9 +47,13 @@ public:
     ~screen();
 
     /** draw an entity on screen
+     * @param name figure name
      * @param raw_figure AxB figure map
      * @param starting_location starting location of the figure map */
-    void draw(const std::string & raw_figure, location_t starting_location);
+    void draw(const std::string & name, const std::string & raw_figure, location_t starting_location);
+
+    /** export clashed objects */
+    std::list < std::vector < std::string > > export_clash();
 };
 
 /** entity manager */

@@ -11,6 +11,8 @@ int main(int argc, char ** argv)
     display.init();
 
     display.draw(
+            "TestObject1",
+
             "-----\n"
             " +|+ \n"
             "  V  \n",
