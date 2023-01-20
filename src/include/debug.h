@@ -1,6 +1,10 @@
 #ifndef DEBUG_H
 #define DEBUG_H
 
+/** @file
+ * This file defines interfaces for debugging process
+ */
+
 #include <vector>
 #include <string>
 
@@ -22,7 +26,8 @@ struct vec_func_info_t
 typedef std::vector < trace_func_info_t > trace_info_t;
 typedef std::vector < vec_func_info_t > vector_symbol_table_t;
 
-// initialize debug symbol tracer
+/** initialize debug symbol tracer
+ * @param filename always equal to argv[0] */
 void initialize_symbol_vector(const char * filename);
 
 // clean addr2line output

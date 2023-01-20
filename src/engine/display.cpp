@@ -24,6 +24,9 @@ void screen::init()
 
     // init memory space
     clear();
+
+    // clear screen
+    update_screen();
 }
 
 screen::~screen()
@@ -31,7 +34,7 @@ screen::~screen()
     endwin();
 }
 
-void screen::display()
+void screen::update_screen()
 {
     // resize term if resizing detected
     if (is_term_resized(LINE_LEN, COLS_LEN))
@@ -56,6 +59,49 @@ void screen::clear()
         for (char & sig : line)
         {
             sig = ' ';
+        }
+    }
+}
+
+void screen::draw(const std::string &raw_figure, location_t starting_location)
+{
+    std::vector < std::string > figure;
+    std::string cache;
+
+    // convert raw_figure to AxB figure map
+    for (auto i : raw_figure)
+    {
+        // not eol, add to cache
+        if (i != '\n') {
+            cache += i;
+        }
+        else // is eol, save to _figure
+        {
+            figure.emplace_back(cache);
+            cache.clear();
+        }
+    }
+
+    // sanity check
+    if (
+            !figure.empty() &&
+
+            ((starting_location.line + figure.begin()->size() > LINE_LEN)
+            || starting_location.cols + figure.size() > COLS_LEN)
+        )
+    {
+        throw simple_error_t(INVALID_LOCATION_CDX);
+    }
+
+    // update video memory
+    for (int line = 0; line < figure.size(); line++)
+    {
+        for (int cols = 0; cols < figure[line].size(); cols++)
+        {
+            v_memory
+                [starting_location.line + line]
+                [starting_location.cols + cols]
+                    = figure[line][cols];
         }
     }
 }

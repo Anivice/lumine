@@ -1,23 +1,24 @@
 #include <lumine.h>
 #include <debug.h>
 #include <iostream>
+#include <ncurses.h>
 
 int main(int argc, char ** argv)
 {
     initialize_symbol_vector(argv[0]);
 
-    define_entity("TestObject",
-                  "  ^  \n"
-                  " +|+ \n"
-                  "-----\n");
+    screen display;
+    display.init();
 
-    entity_display display;
-    display.screen_display.clear();
+    display.draw(
+            "-----\n"
+            " +|+ \n"
+            "  V  \n",
 
-    display.screen_display.v_memory[2][3] = 's';
-    display.screen_display.v_memory[6][8] = 's';
-    auto loc = display.find_empty_space_on_screen(10, 10);
-    std::cout << loc.x << "x" << loc.y << std::endl;
+            location_t { .line = 0, .cols = 0 }
+            );
 
+    display.update_screen();
+    getch();
     return 0;
 }

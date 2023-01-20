@@ -177,7 +177,7 @@ simple_error_t::simple_error_t(uint64_t _error_code, const std::string& extra)
         ERROR_SWITCH_CASE(SUCCESS);
         ERROR_SWITCH_CASE(NCURSES_INIT_FAILED);
         ERROR_SWITCH_CASE(SIGNAL_OVERRIDE_FAILED);
-        ERROR_SWITCH_CASE(NO_SPACE_LEFT_ON_SCRREN);
+        ERROR_SWITCH_CASE(INVALID_LOCATION);
         default :
             output << "(Unknown error)";
             break;

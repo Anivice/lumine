@@ -11,7 +11,7 @@ int main(int argc, char ** argv)
     screen.init();
 
     // clear screen
-    screen.display();
+    screen.update_screen();
 
     screen.v_memory[1][0] = ' ';
     screen.v_memory[1][1] = 'H';
@@ -20,7 +20,7 @@ int main(int argc, char ** argv)
     screen.v_memory[1][4] = 'l';
     screen.v_memory[1][5] = 'o';
 
-    screen.display();
+    screen.update_screen();
 
     getch();
 
@@ -31,7 +31,7 @@ int main(int argc, char ** argv)
     screen.v_memory[1][4] = 'l';
     screen.v_memory[1][5] = 'd';
 
-    screen.display();
+    screen.update_screen();
 
     getch();
 

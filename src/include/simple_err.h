@@ -1,6 +1,10 @@
 #ifndef SIMPLE_ERR_H
 #define SIMPLE_ERR_H
 
+/** @file
+ * This file defines a simple error class
+ */
+
 #include <debug.h>
 #include <exception>
 
@@ -13,7 +17,7 @@ const unsigned long int code##_CDX = val;
 _ADD_ERROR_INFORMATION_(SUCCESS, 0, "Success")
 _ADD_ERROR_INFORMATION_(NCURSES_INIT_FAILED,        1,  "ncurses initialization failed")
 _ADD_ERROR_INFORMATION_(SIGNAL_OVERRIDE_FAILED,     2,  "signal override failed")
-_ADD_ERROR_INFORMATION_(NO_SPACE_LEFT_ON_SCRREN,    3,  "no space left on screen")
+_ADD_ERROR_INFORMATION_(INVALID_LOCATION,           3,  "invalid location")
 #undef _ADD_ERROR_INFORMATION_
 
 
