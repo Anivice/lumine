@@ -27,7 +27,7 @@ typedef std::vector < trace_func_info_t > trace_info_t;
 typedef std::vector < vec_func_info_t > vector_symbol_table_t;
 
 /** initialize debug symbol tracer
- * @param filename always equal to argv[0] */
+ * @param filename always equals to argv[0] */
 void initialize_symbol_vector(const char * filename);
 
 // clean addr2line output

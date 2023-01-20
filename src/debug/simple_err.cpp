@@ -178,6 +178,8 @@ simple_error_t::simple_error_t(uint64_t _error_code, const std::string& extra)
         ERROR_SWITCH_CASE(NCURSES_INIT_FAILED);
         ERROR_SWITCH_CASE(SIGNAL_OVERRIDE_FAILED);
         ERROR_SWITCH_CASE(INVALID_LOCATION);
+        ERROR_SWITCH_CASE(OBJ_IN_QUERY_NOT_FOUND);
+        ERROR_SWITCH_CASE(OBJ_IN_QUERY_ALREADY_EXISTS);
         default :
             output << "(Unknown error)";
             break;
